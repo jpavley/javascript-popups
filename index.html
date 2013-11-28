@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+<head>
+<title>JavaScript Popups for fun and Amusement!</title>
+  <link href="css/ui-darkness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      margin: 10px;
+      background-color: #333333;
+      color: #ccffff;
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffcc00;
+    }
+    .code_example, pre {
+      font-family: monospace;
+      color: #ccff00;
+    }
+    .note {
+      border-style: dotted;
+      border-width: 3px;
+      border-color: #ffccff;
+      background-color: #666666;
+      padding: 12px;
+    }
+    a:link, a:visited, a:hover, a:active {
+      color: #ffff00;
+      text-decoration: none;
+      background-color: #666666;
+    }
+    #tiny_text {
+      font-size: 0.5em;
+    }
+    ul, li {
+      list-style-type: none;
+    }
+  </style>
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.js"></script>
+</head>
+<body>
+<h1>JavaScript Popups for fun and amusement!</h1>
+
+<p>
+  There are many ways to create popups in JavaScript! We'll expore two ways to do it: the JavaScript <span class="code_example">alert()</span> function and using jQuery's super powerfull <em>Dialog API</em>.
+</p>
+
+<p class="note">
+  FYI: You should totally "view source" and look at the HTML source code of this page for examples of how to do popups in JavaScript.
+</p>
+
+<h2>Example 1: JavaScript Alerts</h2>
+
+<script type="text/javascript">
+
+function SimpleAlert() {
+  this.alert("Hello World! I'm poping up!");
+}
+
+function ComplexAlert() {
+  var result = this.confirm("We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, --That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government, laying its foundation on such principles and organizing its powers in such form, as to them shall seem most likely to effect their Safety and Happiness. Prudence, indeed, will dictate that Governments long established should not be changed for light and transient causes; and accordingly all experience hath shewn, that mankind are more disposed to suffer, while evils are sufferable, than to right themselves by abolishing the forms to which they are accustomed. But when a long train of abuses and usurpations, pursuing invariably the same Object evinces a design to reduce them under absolute Despotism, it is their right, it is their duty, to throw off such Government, and to provide new Guards for their future security.--Such has been the patient sufferance of these Colonies; and such is now the necessity which constrains them to alter their former Systems of Government. The history of the present King of Great Britain is a history of repeated injuries and usurpations, all having in direct object the establishment of an absolute Tyranny over these States. To prove this, let Facts be submitted to a candid world.\n\nClick OK to agree!");
+  if (result) {
+    this.alert("You clicked OK");
+  } else {
+    this.alert("You clicked Cancel");
+  }
+}
+
+</script>
+
+<p>
+  Click <a href="javascript:SimpleAlert();">here</a> to display an old school JavaScript popup dialog box using the <span class="code_example">alert()</span> function. Just about every web browser in the world supports this function. You can't do much with it but it has the virtues of compatibility and nostalgia. Click <a href="javascript:ComplexAlert();">here</a> to display an even more elaborate JavaScript alert.
+</p>
+
+<p>
+  JavaScript proves three types of alerts: <span class="code_example">alert()</span>, <span class="code_example">confirm()</span>, and <span class="code_example">prompt()</span>. But as quick and easy as JavaScript alerts are you should never use them. Basically they can only display text strings, they can't be stylized, and using a JavaScript function as an href in an anchor tag is considered by many to be bad form, like holding your tennis racket the wrong way.
+</p>
+
+<p>
+  In the first <a href="javascript:SimpleAlert();">here</a> I set the href of an anchor tag to call a custom function <span class="code_example">SimpleAlert()</span>. In the body of SimpleAlert the <span class="code_example">alert()</span> function is called with the text "Hello World! I'm poping up!" as an argument.
+</p>
+
+<p class="code_example"><pre>
+  function SimpleAlert() {
+    this.alert("Hello World! I'm poping up!");
+  }
+</pre></p>
+
+<p>
+  In the second <a href="javascript:ComplexAlert();">here</a> I went nuts! First, I set the href to call a custom function <span class="code_example">ComplexAlert()</span>. In the body of ComplextAlert I used the <span class="code_example">comfirm()</span> function. The argurment to confirm is 1650 characters of text from the <em>Declaration of Independence</em>. Confirm return a boolean value: true if the user clicks OK and false if the user clicks cancel. I store that return value in a variable named result and test if with an if statement. I display another alert telling the user what she clicked on. At this point the web browser gets angry and includes a checkbox on the alert asking the user if she wants to stop all these alerts from popping up. So really it's all bad.
+</p>
+
+<p class="code_example"><pre>
+  function ComplexAlert() {
+    var result = this.confirm("We hold these truths to be self-evident, that all 
+    men are created equal, that they are endowed by their Creator with certain 
+    unalienable Rights, that among these are Life, Liberty and the pursuit of 
+    Happiness.--That to secure these rights, Governments are instituted among 
+    Men, deriving their just powers from the consent of the governed, --That 
+    whenever any Form of Government becomes destructive of these ends, it is 
+    the Right of the People to alter or to abolish it, and to institute new 
+    Government, laying its foundation on such principles and organizing its 
+    powers in such form, as to them shall seem most likely to effect their 
+    Safety and Happiness. Prudence, indeed, will dictate that Governments 
+    long established should not be changed for light and transient causes; 
+    and accordingly all experience hath shewn, that mankind are more disposed 
+    to suffer, while evils are sufferable, than to right themselves by 
+    abolishing the forms to which they are accustomed. But when a long train 
+    of abuses and usurpations, pursuing invariably the same Object evinces a 
+    design to reduce them under absolute Despotism, it is their right, it is 
+    their duty, to throw off such Government, and to provide new Guards for 
+    their future security.--Such has been the patient sufferance of these 
+    Colonies; and such is now the necessity which constrains them to alter 
+    their former Systems of Government. The history of the present King of 
+    Great Britain is a history of repeated injuries and usurpations, all 
+    having in direct object the establishment of an absolute Tyranny over 
+    these States. To prove this, let Facts be submitted to a candid world.
+    \n\n
+    Click OK to agree!");
+    if (result) {
+      this.alert("You clicked OK");
+    } else {
+      this.alert("You clicked Cancel")
+    }
+  }
+</pre></p>
+
+<p class="note">
+  FYI: I use a little trick in my 1650 character string to add a line break: I include two "newline" characters (\n\n). They they act like carrage returns. Very long strings like this are are difficult to read and difficult for a coder to manage. For example if the string contained single or double quoation marks (' or ") I'd have to escape them like so: \' \". Escaping a character is only needed when that character has a special function in JavaScript (like newline or marking the bounds of a string).
+</p>
+
+<h2>Example 2: jQuery Dialogs</h2>
+
+<script type="text/javascript">
+
+  $(function () {
+
+    $("#dialog").dialog({
+      autoOpen: false,
+      width: 400,
+      buttons: [
+        {
+          text: "Ok",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
+    });
+
+    // Link to open the dialog
+    $("#dialog_trigger").click(function (event) {
+      $("#dialog").dialog("open");
+      event.preventDefault();
+    });
+  });
+
+</script>
+
+<div id="dialog" title="Simple Popup">
+  <p>
+    Why howdy there world! I'm popping up <em>even better</em>!
+  </p>
+</div>
+
+<p>
+  Click <a href="#" id="dialog_trigger">here</a> to display a pro-looking popup window the jQuery Dialog API. Not only is the text and graphics of this popup good looking (you can control its style with CSS) but it's much more functional: The user can drag it around, resize it, and close it. Cost of all this functionality is code complexity. Instead of a single call to <span class="code_example">alert()</span> you have to write more HTML, CSS, and JavaScript. But in all honestly, if you want to be a real webcoder then you can't be stranger to the HTML, CSS, and JavaScript that jQuery's Dialog API requires. And once you master it, the possibilities are inifinite.
+</p>
+
+<p>
+  I'll walk you through each step so that you can get a head start on understanding how the jQuery Dialog API works.
+</p>
+
+<h3>Step 1: Download the jQuery libraries that you need and setup a proejct folder.</h3>
+
+<p>
+  Point your browser at <a href="http://jqueryui.com/dialog/">http://jqueryui.com/dialog/</a> and bookmark it. (You'll want to go back and read more after this tutorial.) Head over to <a href="http://jqueryui.com/themeroller/">http://jqueryui.com/themeroller/</a> and click the "Gallery" tab on the ThemeRoller widget. Choose a theme to download. I went for <em>UI darkness</em> because that's how I roll. Click the download button, drag the file "jquery-ui-1.10.3.custom.zip" out of your downloads folder to your desktop. Unzip it, open the "jquery-ui-1.10.3.custom" folder, and take a peek inside. It's all good stuff in there but for this exercise you only need two items. Copy the folders "css" and "js" to your own folder. (For example, my folder for this project is named "popup".) Creat new blank index.html file in your project folder. If you're following along at home then you should have a folder structure that looks like this:
+  <ul>
+    <li>+ popup</li>
+    <ul>
+      <li>+ css</li>
+      <li>- index.html</li>
+      <li>+ js</li>
+    </ul>
+  </ul>
+</p>
+
+<h3>Step 2: Create a skeleton HTML document inside index.html.</h3>
+
+<p>
+  Quickly belting out an HTML document skeleton: all you need are doctype, html, head, title, stylesheet link, script, body, and header elements. I created one for you called <a href="example.html">example.html</a>.
+</p>
+
+<h3>Step 3: Link up the jQuery Dialog Javascript and CSS libraries.</h3>
+
+<p>
+  In header of your index.html file link to your local copy of css/ui-darkness/jquery-ui-1.10.3.custom.css. And add two script tags so you can load jquery itself (js/jquery-1.9.1.js) and the library that makes the dialogs work (js/jquery-ui-1.10.3.custom.js). <a href="example2.html">example2.html</a> shows you how to do it.
+</p>
+
+<h3>Step 4: Add the JavaScript that powers your dialog.</h3>
+
+<p>
+  Create a new script tag inside your body just below the head. Inside this tag you're going to write some really beautiful JavaScript code. If you're new to webcoding let me break down for you. (You can follow along with <a href="example3.html">example3.html</a>.)
+</p>
+
+<h4>Step 4.1: Create an anonymous Javascript function that jQuery executes as soon as the web page loads.</h4>
+
+<p class="code_example"><pre>
+  $(function () {
+
+  });
+</pre></p>
+
+<p class="note">
+  FYI: The <span class="code_example">$()</span> is shorthand for the jquery object. The function is anonymous becuase it is missing a name between the word <span class="code_example">function</span> and the <span class="code_example">()</span>. This function doesn't need a name because it gets called when the page loads and never again. Technically it's used to create a scope and is called a closure and prevents other bits of JavaScript on your page from colliding with the variables and object inside it.
+</p>
+
+<h4>Step 4.2: Add an inner function that defines your dialog with JSON.</h4>
+
+<p class="code_example"><pre>
+  $(function () {
+
+    $("#dialog").dialog({
+      autoOpen: false,
+      width: 400,
+      buttons: [
+        {
+          text: "Ok",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
+    });
+
+
+  });
+</pre></p>
+
+<p class="note">
+  FYI: <span class="code_example">$("#dialog").dialog()</span> tells jquery to associate this function with the HTML element with the ID "dialog". The properties between <span class="code_example">{}</span> are passed an a argument to the <span class="code_example">dialog()</span> function in the form of a JSON (JavaScript Object Notation) object. The property autoOpen is set to false so the user doesn't see the dialog until she has click a link (or a button). In the list <span class="code_example">buttons: []</span> there is only one button named "Ok". A click function is associated with the Ok button that simply tells jquery to close the dialog.
+</p>
+
+<h4>Step 4.3: Add an inner function that popups up your dialog.</h4>
+
+<p class="code_example"><pre>
+  $(function () {
+
+    $("#dialog").dialog({
+      autoOpen: false,
+      width: 400,
+      buttons: [
+        {
+          text: "Ok",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
+    });
+
+    // Link to open the dialog
+    $("#dialog_trigger").click(function (event) {
+      $("#dialog").dialog("open");
+      event.preventDefault();
+    });
+
+  });
+</pre></p>
+
+<p class="note">
+  FYI: <span class="code_example">$("#dialog_trigger").click()</span> tells jquery to execute this function when the HTML element with the ID "dialog" is clicked. <span class="code_example">click()</span> gets another function, an anonymous one, as a argument! This function opens the dialog defined above and prevents the brower from doing anything else with that click (<span class="code_example">preventDefault()</span>). Now all you need is the actual dialog content!
+</p>
+
+<h4>Step 4.4: Define the content and structure of your dialog in HTML.</h4>
+
+<p>
+  We're all done with Javascript. The last thing we need to do is write some HTML below the script tag that define the dialog content inside a div and defines a link to click so we can see the dialog that we have been working so hard on. <a href="example4.html">example4.html</a> contains the final product with all the HTML, CSS, and JavaScript combined. example4.html is really just the document you are reading but stripped down to only the bits that pop up a dialog.
+</p>
+
+<p class="note">
+  FYI: The first div element in example4.html defines the dialog: its title and body. You can use CSS and HTML to style it like crazy. The first JavaScript function prevents the user from seeing this div on the page but if you view source you'll see it's sitting there plain as day. The second div element defines the link that the user clicks to display the dialog. The id "dialog_tigger" associates the link with the second function in the JavaScript element.
+</p>
+
+<script type="text/javascript">
+
+  $(function () {
+
+    $("#dialog2").dialog({
+      autoOpen: false,
+      width: 400,
+      buttons: [
+        {
+          text: "Ok",
+          click: function () {
+            $(this).dialog("close");
+            alert("You clicked Ok");
+          }
+        },
+        {
+          text: "Cancel",
+          click: function () {
+            $(this).dialog("close");
+            alert("You clicked Cancel");
+          }
+        }
+      ]
+    });
+
+    // Link to open the dialog
+    $("#dialog_trigger2").click(function (event) {
+      $("#dialog2").dialog("open");
+      event.preventDefault();
+    });
+  });
+
+</script>
+
+<div id="dialog2" title="Complex Popup">
+  <p id="tiny_text">
+    We hold these truths to be <em>self-evident</em>, that all men are created equal, that they are endowed by their <strong>Creator</strong> with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, --That whenever any <em>Form of Government</em> becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government, laying its foundation on such principles and organizing its powers in such form, as to them shall seem most likely to effect their <strong>Safety and Happiness</strong>. Prudence, indeed, will dictate that Governments long established should not be changed for light and transient causes; and accordingly all experience hath shewn, that mankind are more disposed to suffer, while evils are sufferable, than to right themselves by abolishing the forms to which they are accustomed. But when a long train of abuses and usurpations, pursuing invariably the same <em>Object</em> evinces a design to reduce them under absolute Despotism, it is their right, it is their duty, to throw off such Government, and to provide new Guards for their future security.--Such has been the patient sufferance of these Colonies; and such is now the necessity which constrains them to alter their former <strong>Systems of Government</strong>. The history of the present King of Great Britain is a history of repeated injuries and usurpations, all having in direct object the establishment of an absolute Tyranny over these States. To prove this, let Facts be submitted to a candid world.<br><br>Click <strong>OK</strong> to agree!
+  </p>
+</div>
+
+<p>
+  Click <a href="#" id="dialog_trigger2">here</a> to display the complex version of the jQuery Dialog API popup. I used several em and strong tags to style the text and even included JavaScript alerts to tell you which button you pressed! I also use a style (tiny_text) to make all the text fit insde the dialog dimensions. I'm sure you can do a better job than me with this thing!
+</p>
+
+</body>
+</html>

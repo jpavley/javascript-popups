@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <title>Example</title>
+  <link href="css/ui-darkness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.js"></script>
+</head>
+<body>
+  <h1>Example</h1>
+  <script type="text/javascript">
+
+  $(function () {
+
+    $("#dialog").dialog({
+      autoOpen: false,
+      width: 400,
+      buttons: [
+        {
+          text: "Ok",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
+    });
+
+    // Link to open the dialog
+    $("#dialog_trigger").click(function (event) {
+      $("#dialog").dialog("open");
+      event.preventDefault();
+    });
+  });
+
+</script>
+
+<div id="dialog" title="Simple Popup">
+  <p>
+    Why howdy there world! I'm popping up <em>even better</em>!
+  </p>
+</div>
+
+<p>
+  Click <a href="#" id="dialog_trigger">here</a> to display a pro-looking popup window the jQuery Dialog API.
+</p>
+
+
+</body>
+</html>
